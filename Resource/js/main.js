@@ -36,6 +36,13 @@ const btnLogin = document.querySelector('#btn-login');
 //     lastName: 'Raman',
 //     email: 'akshayramanj.csbs2020@citchennai.net',
 //     password: '083020codealgo',
+// },
+// {
+//     type: 'teacher',
+//     firstName: 'Jayaraman',
+//     lastName: '',
+//     email: 'jayaraman@gmail.com',
+//     password: 'codealgo',
 // }]))
 
 // class Account {
@@ -80,7 +87,8 @@ class Database {
     _getLocalStorage(){
         this.#currentAccount = JSON.parse(localStorage.getItem('currentAccount'));
         this.#accounts = JSON.parse(localStorage.getItem('accounts'));
-        
+        console.log(this.#accounts);
+        console.log(this.#currentAccount);
     }
 
     _checkingByClicking(e){
@@ -115,6 +123,11 @@ class Database {
         if (!email.includes('@')){
             alert('Invalid Email');
             return;
+        }
+
+        if(!this.#accounts){
+            alert('There is no matching account');
+            return ;
         }
 
         const foundedAccount = this.#accounts.find(
