@@ -79,7 +79,7 @@ class Database {
     #currentAccount;
     constructor(){
         this._getLocalStorage();
-        form.addEventListener('submit', this._checkingByEntering.bind(this));
+        form.addEventListener('keypress', this._checkingByEntering.bind(this));
         btnLogin.addEventListener('click', this._checkingByClicking.bind(this));
     }
     
@@ -104,17 +104,19 @@ class Database {
     }
 
     _checkingByEntering(e){
-        e.preventDefault();
-
-        const email = emailBox.value;
-        const password = passwordBox.value;
-        
-        if (emailBox === document.activeElement){
-            passwordBox.focus();
-            return ;
+        if(e.keyCOde === 13){
+            e.preventDefault();
+    
+            const email = emailBox.value;
+            const password = passwordBox.value;
+            
+            if (emailBox === document.activeElement){
+                passwordBox.focus();
+                return ;
+            }
+            
+            this._setCurrentAccount(email,password);
         }
-        
-        this._setCurrentAccount(email,password);
     }
 
     _setCurrentAccount(email,password){
