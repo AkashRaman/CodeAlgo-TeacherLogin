@@ -100,7 +100,7 @@ class Database {
             return ;
         }
 
-        this._setCurrentAccount(email,regno,password);
+        this._setCurrentAccount(email,password);
     }
 
     _checkingByEntering(e){
