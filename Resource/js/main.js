@@ -3,7 +3,6 @@
 const store = document.getElementById('name');
 
 const emailBox = document.getElementById('email-box');
-const regnoBox = document.getElementById('regno-box');
 const passwordBox = document.getElementById('password-box');
 const form = document.querySelector('.form');
 const btnLogin = document.querySelector('#btn-login');
