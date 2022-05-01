@@ -6,7 +6,7 @@ const emailBox = document.getElementById('email-box');
 const passwordBox = document.getElementById('password-box');
 const form = document.querySelector('.form');
 const btnLogin = document.querySelector('#btn-login');
-
+const btnCWSignup = document.querySelector('#btn-cwsignup');
 // const guest = {
 //     name: 'Guest',
 //     email: 'unknown',
@@ -81,8 +81,14 @@ class Database {
         this._getLocalStorage();
         form.addEventListener('keypress', this._checkingByEntering.bind(this));
         btnLogin.addEventListener('click', this._checkingByClicking.bind(this));
+        btnCWSignup.addEventListener('click', this._locationToSignup.bind(this));
     }
     
+    _locationToSignup(e){
+        e.preventDefault();
+        location.href = "https://akashraman.github.io/CodeAlgo-TeacherSignup/"
+    }
+
     _getLocalStorage(){
         this.#currentAccount = JSON.parse(localStorage.getItem('currentAccount'));
         this.#accounts = JSON.parse(localStorage.getItem('accounts'));
@@ -143,6 +149,7 @@ class Database {
         this.#currentAccount = foundedAccount;
         localStorage.removeItem('currentAccount')
         localStorage.setItem('currentAccount',JSON.stringify(this.#currentAccount));
+        location.href = "https://akashraman.github.io/CodeAlgo/";
     }
 }
 
