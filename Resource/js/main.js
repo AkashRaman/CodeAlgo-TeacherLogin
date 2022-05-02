@@ -3,6 +3,7 @@
 const store = document.getElementById('name');
 
 const emailBox = document.getElementById('email-box');
+const staffIdBox = document.getElementById('staffId-box');
 const passwordBox = document.getElementById('password-box');
 const form = document.querySelector('.form');
 const btnLogin = document.querySelector('#btn-login');
@@ -99,14 +100,15 @@ class Database {
     _checkingByClicking(e){
         e.preventDefault();
         const email = emailBox.value;
+        const staffId = staffIdBox.value;
         const password = passwordBox.value;
 
-        if(!(email&&password)){
+        if(!(email&&password&&staffId)){
             alert("Enter every details");
             return ;
         }
 
-        this._setCurrentAccount(email,password);
+        this._setCurrentAccount(email,staffId,password);
     }
 
     _checkingByEntering(e){
@@ -114,18 +116,24 @@ class Database {
             e.preventDefault();
     
             const email = emailBox.value;
+            const staffId = staffIdBox.value;
             const password = passwordBox.value;
             
             if (emailBox === document.activeElement){
+                staffIdBox.focus();
+                return ;
+            }
+            
+            if (staffIdBox === document.activeElement){
                 passwordBox.focus();
                 return ;
             }
             
-            this._setCurrentAccount(email,password);
+            this._setCurrentAccount(email,staffId,password);
         }
     }
 
-    _setCurrentAccount(email,password){
+    _setCurrentAccount(email,staffId,password){
 
         if (!email.includes('@')){
             alert('Invalid Email');
@@ -138,7 +146,7 @@ class Database {
         }
 
         const foundedAccount = this.#accounts.find(
-            account => (account.type == 'teacher' && account.email === email && account.password === password)
+            account => (account.type == 'teacher' && account.staffId === staffId && account.email === email && account.password === password)
           );
 
         if(!foundedAccount){
@@ -147,7 +155,6 @@ class Database {
         }
 
         this.#currentAccount = foundedAccount;
-        localStorage.removeItem('currentAccount')
         localStorage.setItem('currentAccount',JSON.stringify(this.#currentAccount));
         location.href = "https://akashraman.github.io/CodeAlgo/";
     }
