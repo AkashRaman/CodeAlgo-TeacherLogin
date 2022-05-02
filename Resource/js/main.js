@@ -112,7 +112,7 @@ class Database {
     }
 
     _checkingByEntering(e){
-        if(e.keyCOde === 13){
+        if(e.keyCode === 13){
             e.preventDefault();
     
             const email = emailBox.value;
