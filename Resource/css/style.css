@@ -1131,6 +1131,12 @@ nav {
     text-decoration-color: transparent;
 }
 
+form p{
+    color: #fff;
+    text-align: center;
+    margin: 20px 0 15px 0;
+}
+
 
 .sticky .nav-section.hover li div a:hover,
 .sticky .nav-section li div a:active{
